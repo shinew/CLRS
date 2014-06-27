@@ -7,11 +7,13 @@ using namespace std;
 
 void insertion_sort(int nums[], int len) {
 	for(int i = 1; i < len; i++) {
-		int j = i;
-		while(j > 0 && nums[j] < nums[j-1]) {
-			swap(nums[j], nums[j-1]);
+		int j = i-1;
+		int key = nums[i];
+		while(j >= 0 && key < nums[j]) {
+			nums[j+1] = nums[j];
 			j--;
 		}
+		nums[j+1] = key;
 	}
 	return;
 }
@@ -30,6 +32,10 @@ bool insertion_sort_test() {
 }
 
 int main() {
-	printf("%d\n", insertion_sort_test());
+	if (insertion_sort_test()) {
+		printf("Success!");
+	} else {
+		printf("Failed.");
+	}
 	return 0;
 }
